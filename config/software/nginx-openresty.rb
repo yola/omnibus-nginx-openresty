@@ -1,6 +1,6 @@
 require "fileutils"
 
-name "nginx"
+name "nginx-openresty"
 version "1.4.2.8"
 
 dependency "geoip"
@@ -32,7 +32,7 @@ build do
   command "patch -p1 < #{source_dir}/ngx_http_filter_cache/core.diff", cwd: "#{project_dir}/bundle/nginx-1.4.2"
   command "patch -p1 < #{source_dir}/nginx_upstream_check_module/check_1.2.6+.patch",  cwd: "#{project_dir}/bundle/nginx-1.4.2"
 
-  patch :source => 'server-header.diff'
+  #patch :source => 'server-header.diff'
 
   command ["./configure",
            "--prefix=#{install_dir}/embedded",
@@ -82,7 +82,7 @@ build do
   command "make", :env => env
   command "make install", :env => env
   command "rm #{install_dir}/sbin/nginx.old || true"
-  command "mkdir -p #{install_dir}/lib/nginx"
+  command "mkdir -p #{install_dir}/lib/nginx-openresty"
 
   block do
     dir = File.join(install_dir, "etc", "init")

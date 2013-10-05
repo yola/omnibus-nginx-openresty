@@ -1,7 +1,7 @@
 name "luarocks"
 version "2.0.12"
 
-dependency "nginx"
+dependency "nginx-openresty"
 
 source url: "http://luarocks.org/releases/luarocks-#{version}.tar.gz", md5: "a1bc938ddf835550917f0cb6964ea516"
 

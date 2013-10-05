@@ -1,7 +1,7 @@
-# nginx Omnibus project
+# nginx-openresty Omnibus project
 
 This project creates full-stack platform-specific packages for
-`nginx`!
+`nginx-openresty`!
 
 ## Installation
 
@@ -19,7 +19,7 @@ $ bundle install --binstubs
 You create a platform-specific package using the `build project` command:
 
 ```shell
-$ bin/omnibus build project nginx
+$ bin/omnibus build project nginx-openresty
 ```
 
 The platform/architecture type of the package created will match the platform
@@ -37,7 +37,7 @@ $ bin/omnibus clean
 ```
 
 Adding the `--purge` purge option removes __ALL__ files generated during the
-build including the project install directory (`/opt/nginx`) and
+build including the project install directory (`/opt/nginx-openresty`) and
 the package cache directory (`/var/cache/omnibus/pkg`):
 
 ```shell
@@ -100,3 +100,6 @@ $ vagrant up PLATFORM
 
 The complete list of valid platform names can be viewed with the
 `vagrant status` command.
+
+### Misc
+This is a fork of [omnibus-nginx](https://github.com/bakins/omnibus-nginx) to distinguish that it is openresty.

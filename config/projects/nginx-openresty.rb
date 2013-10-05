@@ -1,10 +1,10 @@
 
-name "nginx"
-maintainer "Brian Akins <brian@akins.org>"
+name "nginx-openresty"
+maintainer "Bearnard Hibbins <bearnard@gmail.com>"
 homepage "http://openresty.org"
 
-replaces        "nginx"
-install_path    "/opt/nginx"
+replaces        "nginx-openresty"
+install_path    "/opt/nginx-openresty"
 build_version   '1.4.2.8'
 build_iteration 1
 
@@ -12,7 +12,7 @@ build_iteration 1
 dependency "preparation"
 
 # openresty dependencies/components
-dependency "nginx"
+dependency "nginx-openresty"
 dependency "luarocks"
 dependency "lua-resty-riak"
 dependency "luafilesystem"
