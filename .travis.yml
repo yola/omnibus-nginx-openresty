@@ -12,7 +12,7 @@ script:
 - sudo chmod 777 /var/cache/omnibus
 - sudo chmod 777 /opt/nginx-openresty
 - omnibus build project nginx-openresty
-- upload --codename=precise --visibility=public --access-key=$AWS_ACCESS_KEY --secret-key=$AWS_SECRET_KEY --bucket $S3_BUCKET /var/cache/omnibus/pkg/nginx-openresty_$PKG_VERSION-1.ubuntu.12.04_amd64.deb
+- deb-s3 upload --codename=precise --visibility=public --access-key=$AWS_ACCESS_KEY --secret-key=$AWS_SECRET_KEY --bucket $S3_BUCKET /var/cache/omnibus/pkg/nginx-openresty_$PKG_VERSION-1.ubuntu.12.04_amd64.deb
 env:
   global:
   - PKG_VERSION=1.4.2.8
