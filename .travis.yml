@@ -7,5 +7,7 @@ before_install:
 script:
   - bundle install --binstubs
   - sudo mkdir -p /var/cache/omnibus
-  - sudo chmod 777  /var/cache/omnibus
+  - sudo mkdir -p /opt/nginx-openresty
+  - sudo chmod 777 /var/cache/omnibus
+  - sudo chmod 777 /opt/nginx-openresty
   - omnibus build project nginx-openresty 
