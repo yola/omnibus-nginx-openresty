@@ -3,6 +3,8 @@
 This project creates full-stack platform-specific packages for
 `nginx-openresty`!
 
+[![Build Status](https://travis-ci.org/bearnard/omnibus-nginx-openresty.png)](https://travis-ci.org/bearnard/omnibus-nginx-openresty.png)
+
 ## Installation
 
 We'll assume you have Ruby 1.9+ and Bundler installed. First ensure all
