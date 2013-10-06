@@ -6,4 +6,6 @@ before_install:
   - gem install omnibus
 script:
   - bundle install --binstubs
+  - sudo mkdir -p /var/cache/omnibus
+  - sudo chmod 777  /var/cache/omnibus
   - omnibus build project nginx-openresty 
