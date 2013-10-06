@@ -1,0 +1,9 @@
+language: ruby
+bundler_args: --without=acceptance
+rvm:
+  - 1.9.3
+before_install:
+  - gem install omnibus
+script:
+  - bundle install --binstubs
+  - omnibus build project nginx-openresty 
