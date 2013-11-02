@@ -5,7 +5,7 @@ homepage "http://openresty.org"
 
 replaces        "nginx-openresty"
 install_path    "/opt/nginx-openresty"
-build_version   '1.4.2.8'
+build_version   '1.4.3.1'
 build_iteration 1
 
 # creates required build directories

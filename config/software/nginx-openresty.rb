@@ -1,7 +1,7 @@
 require "fileutils"
 
 name "nginx-openresty"
-version "1.4.2.8"
+version "1.4.3.1"
 
 dependency "geoip"
 dependency "openssl"
