@@ -17,7 +17,7 @@ dependency "nginx_http_jsonp_module"
 dependency "ngx_cache_purge"
 dependency "nginx-statsd"
 
-source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "2fe764d29abc378ef8687505f376d59d"
+source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "e2bbeb5ebfd3422f635747432777e3fb"
 
 relative_path "ngx_openresty-#{version}"
 
