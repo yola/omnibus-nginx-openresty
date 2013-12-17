@@ -83,6 +83,7 @@ build do
   command "make install", :env => env
   command "rm #{install_dir}/sbin/nginx.old || true"
   command "mkdir -p #{install_dir}/lib/nginx-openresty"
+  command "ln -s #{install_dir}/embedded/luajit/bin/luajit-2.1.0-alpha #{install_dir}/embedded/luajit/bin/luajit"
 
   block do
     dir = File.join(install_dir, "etc", "init")
