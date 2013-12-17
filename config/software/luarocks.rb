@@ -3,7 +3,7 @@ version "2.1.1"
 
 dependency "nginx-openresty"
 
-source url: "http://luarocks.org/releases/luarocks-#{version}.tar.gz", md5: "9df79d88f8abdc40f9da298296ae868c"
+source url: "http://luarocks.org/releases/luarocks-#{version}.tar.gz", md5: "911da64d6426340674ba478b40b26b4e"
 
 relative_path "luarocks-#{version}"
 
