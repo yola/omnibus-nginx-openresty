@@ -1,7 +1,7 @@
 require "fileutils"
 
 name "nginx-openresty"
-version "1.4.3.9"
+version "1.5.8.1"
 
 dependency "geoip"
 dependency "openssl"
@@ -9,15 +9,10 @@ dependency "libxml2"
 dependency "libxslt"
 dependency "pcre"
 dependency "gd"
-dependency "ngx_http_gunzip_filter_module"
-dependency "ngx_http_filter_cache"
-dependency "nginx_upstream_check_module"
-dependency "nginx_http_jsonp_module"
-#dependency "nginx-upload-module"
 dependency "ngx_cache_purge"
 dependency "nginx-statsd"
 
-source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "232e4d1771019c39e10f50dac734e967"
+source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "a80d35af95e1dc20c97a7a0df81aeb0d"
 
 relative_path "ngx_openresty-#{version}"
 
@@ -29,10 +24,6 @@ build do
     "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
   }
 
-  command "patch -p1 < #{source_dir}/ngx_http_filter_cache/core.diff", cwd: "#{project_dir}/bundle/nginx-1.4.3"
-  command "patch -p1 < #{source_dir}/nginx_upstream_check_module/check_1.2.6+.patch",  cwd: "#{project_dir}/bundle/nginx-1.4.3"
-
-  #patch :source => 'server-header.diff'
 
   command ["./configure",
            "--prefix=#{install_dir}/embedded",
@@ -71,10 +62,6 @@ build do
            "--with-pcre-jit",
            "--with-ld-opt=\"-pie -L#{install_dir}/embedded/lib -Wl,-rpath,#{install_dir}/embedded/lib -lssl -lcrypto -ldl -lz\"",
            "--with-cc-opt=\"-fPIC -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include\"",
-           "--add-module=#{source_dir}/ngx_http_gunzip_filter_module",
-           "--add-module=#{source_dir}/ngx_http_filter_cache",
-           "--add-module=#{source_dir}/nginx_upstream_check_module",
-           "--add-module=#{source_dir}/nginx_http_jsonp_module",
            "--add-module=#{source_dir}/ngx_cache_purge",
            "--add-module=#{source_dir}/nginx-statsd"
           ].join(" "), :env => env
