@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     # Give enough horsepower to build without taking all day.
     vb.customize [
       "modifyvm", :id,
-      "--memory", "1536",
+      "--memory", "4096",
       "--cpus", "2"
     ]
   end
@@ -54,6 +54,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder host_project_path, guest_project_path
 
+  config.vm.provision :shell, :inline => "apt-get update; apt-get -y dist-upgrade; apt-get -y install unzip"
   # prepare VM to be an Omnibus builder
   config.vm.provision :chef_solo do |chef|
     chef.json = {
@@ -63,9 +64,9 @@ Vagrant.configure("2") do |config|
         "install_dir" => "/opt/#{project_name}"
       }
     }
+    chef.log_level = :debug
 
     chef.run_list = [
-      "recipe[zip]",
       "recipe[omnibus::default]"
     ]
   end

@@ -1,5 +1,5 @@
 name "luarocks"
-version "2.1.1"
+default_version "2.1.1"
 
 dependency "nginx-openresty"
 

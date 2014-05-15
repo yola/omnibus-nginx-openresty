@@ -5,7 +5,7 @@ homepage "http://openresty.org"
 
 replaces        "nginx-openresty"
 install_path    "/opt/nginx-openresty"
-build_version   '1.5.11.1'
+build_version   '1.5.12.1'
 build_iteration 1
 
 # creates required build directories
@@ -14,6 +14,7 @@ dependency "preparation"
 # openresty dependencies/components
 dependency "nginx-openresty"
 dependency "luarocks"
+dependency "lua-pb"
 dependency "lua-resty-riak"
 dependency "luafilesystem"
 dependency "luasec"
