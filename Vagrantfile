@@ -14,6 +14,12 @@ project_name = "nginx-openresty"
 Vagrant.configure("2") do |config|
 
   config.vm.hostname = "#{project_name}-omnibus-build-lab"
+  config.vm.define 'ubuntu-10.04' do |c|
+    c.berkshelf.berksfile_path = "./Berksfile"
+    c.vm.box = "canonical-ubuntu-10.04"
+    c.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+  end
+
   config.vm.define 'ubuntu-12.04' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
     c.vm.box = "canonical-ubuntu-12.04"
@@ -72,9 +78,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, :inline => <<-OMNIBUS_BUILD
-    export PATH=/usr/local/bin:$PATH
-    cd #{guest_project_path}
-    su vagrant -c "bundle install --binstubs"
-    su vagrant -c "bin/omnibus build project #{project_name}"
+    export PATH="/usr/local/bin:$PATH"
+    su vagrant -l -c "cd #{guest_project_path} && bundle install --binstubs"
+    su vagrant -l -c "cd #{guest_project_path} && bin/omnibus build project #{project_name}"
   OMNIBUS_BUILD
 end

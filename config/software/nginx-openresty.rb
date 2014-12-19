@@ -1,7 +1,7 @@
 require "fileutils"
 
 name "nginx-openresty"
-default_version "1.5.12.1"
+default_version "1.7.7.1"
 
 dependency "geoip"
 dependency "openssl"
@@ -11,9 +11,8 @@ dependency "pcre"
 dependency "gd"
 dependency "ngx_cache_purge"
 dependency "nginx-statsd"
-#dependency "nginx-pagespeed"
 
-source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "873a9072f4d3771a35016d53b932caa1"
+source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz", md5: "a55c13366c6f366aa8a3296906473887"
 
 relative_path "ngx_openresty-#{version}"
 
@@ -63,9 +62,8 @@ build do
            "--with-pcre-jit",
            "--with-ld-opt=\"-pie -L#{install_dir}/embedded/lib -Wl,-rpath,#{install_dir}/embedded/lib -lssl -lcrypto -ldl -lz\"",
            "--with-cc-opt=\"-fPIC -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include\"",
-           "--add-module=#{source_dir}/ngx_cache_purge",
-           "--add-module=#{source_dir}/nginx-statsd"
-           #"--add-module=#{source_dir}/nginx-pagespeed"
+           "--add-module=#{Config.source_dir}/ngx_cache_purge",
+           "--add-module=#{Config.source_dir}/nginx-statsd"
           ].join(" "), :env => env
 
   command "make", :env => env

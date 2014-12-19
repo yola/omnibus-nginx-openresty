@@ -3,9 +3,9 @@ name "nginx-openresty"
 maintainer "Bearnard Hibbins <bearnard@gmail.com>"
 homepage "http://openresty.org"
 
-replaces        "nginx-openresty"
-install_path    "/opt/nginx-openresty"
-build_version   '1.5.12.1'
+replaces "nginx-openresty"
+install_dir "/opt/nginx-openresty"
+build_version "1.7.7.1"
 build_iteration 1
 
 # creates required build directories
