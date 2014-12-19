@@ -13,6 +13,10 @@ project_name = "nginx-openresty"
 
 Vagrant.configure("2") do |config|
 
+  config.vm.provider :lxc do |lxc|
+    lxc.backingstore = 'none' # or 'btrfs',...
+  end
+
   config.vm.hostname = "#{project_name}-omnibus-build-lab"
   config.vm.define 'ubuntu-10.04' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
@@ -28,8 +32,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.define 'ubuntu-14.04' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
-    c.vm.box = "canonical-ubuntu-14.04"
-    c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #c.vm.box = "canonical-ubuntu-14.04"
+    #c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    c.vm.box = "fgrehm/trusty64-lxc"
   end
 
   config.vm.define 'centos-6' do |c|
@@ -60,7 +65,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder host_project_path, guest_project_path
 
-  config.vm.provision :shell, :inline => "apt-get update; apt-get -y dist-upgrade; apt-get -y install unzip"
   # prepare VM to be an Omnibus builder
   config.vm.provision :chef_solo do |chef|
     chef.json = {
@@ -73,13 +77,18 @@ Vagrant.configure("2") do |config|
     chef.log_level = :debug
 
     chef.run_list = [
+      "recipe[apt]",
       "recipe[omnibus::default]"
     ]
   end
 
-  config.vm.provision :shell, :inline => <<-OMNIBUS_BUILD
-    export PATH="/usr/local/bin:$PATH"
-    su vagrant -l -c "cd #{guest_project_path} && bundle install --binstubs"
-    su vagrant -l -c "cd #{guest_project_path} && bin/omnibus build project #{project_name}"
+  config.vm.provision :shell, :privileged => false, :inline => <<-OMNIBUS_BUILD
+    export PATH=/usr/local/bin:$PATH
+    rm -rf /home/vagrant/build_#{project_name}
+    cp -rf #{guest_project_path} /home/vagrant/build_#{project_name}
+    cd /home/vagrant/build_#{project_name}
+    bundle install --binstubs
+    bin/omnibus build project #{project_name}
   OMNIBUS_BUILD
+
 end
