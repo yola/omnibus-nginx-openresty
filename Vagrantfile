@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
         "install_dir" => "/opt/#{project_name}"
       }
     }
-    chef.log_level = :debug
+    chef.log_level = :info
 
     chef.run_list = [
       "recipe[apt]",
