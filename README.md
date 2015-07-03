@@ -1,9 +1,7 @@
-# nginx-openresty Omnibus project
+# openresty Omnibus project
 
-This project creates full-stack platform-specific packages for
-`nginx-openresty`!
-
-[![Build Status](https://travis-ci.org/bearnard/omnibus-nginx-openresty.png)](https://travis-ci.org/bearnard/omnibus-nginx-openresty.png)
+This project creates full-stack ubuntu platform-specific packages for
+`openresty - http://openresty.org`!
 
 ## Installation
 
@@ -11,7 +9,25 @@ We'll assume you have Ruby 1.9+ and Bundler installed. First ensure all
 required gems are installed and ready to use:
 
 ```shell
+apt-get install ruby-1.9.3
+gem install bundler && gem update bundler
+```
+
+```shell
 $ bundle install --binstubs
+```
+
+You'll also need some Ubuntu packages installed
+
+```shell
+apt-get install lxc
+```
+
+Grab Vagrant from http://vagrantup.com and follow the ubuntu instructions.
+
+
+```shell
+$ vagrant plugin install vagrant-lxc vagrant-omnibus vagrant-vbguest vagrant-berkshelf
 ```
 
 ## Usage
@@ -21,13 +37,13 @@ $ bundle install --binstubs
 You create a platform-specific package using the `build project` command:
 
 ```shell
-$ bin/omnibus build project nginx-openresty
+$ bundle exec omnibus build openresty
 ```
 
 The platform/architecture type of the package created will match the platform
-where the `build project` command is invoked. So running this command on say a
-MacBook Pro will generate a Mac OS X specific package. After the build
-completes packages will be available in `pkg/`.
+where the `build project` command is invoked. For example, running this command
+on a MacBook Pro will generate a Mac OS X package. After the build completes
+packages will be available in the `pkg/` folder.
 
 ### Clean
 
@@ -35,73 +51,32 @@ You can clean up all temporary files generated during the build process with
 the `clean` command:
 
 ```shell
-$ bin/omnibus clean
+$ bundle exec omnibus clean openresty
 ```
 
 Adding the `--purge` purge option removes __ALL__ files generated during the
-build including the project install directory (`/opt/nginx-openresty`) and
+build including the project install directory (`/opt/chef`) and
 the package cache directory (`/var/cache/omnibus/pkg`):
 
 ```shell
-$ bin/omnibus clean --purge
+$ bundle exec omnibus clean openresty --purge
 ```
 
-### Help
+Kitchen-based Build Environment
+-------------------------------
 
-Full help for the Omnibus command line interface can be accessed with the
-`help` command:
 
 ```shell
-$ bin/omnibus help
+$ bundle exec kitchen converge openresty-ubuntu-1204
 ```
 
-## Vagrant-based Virtualized Build Lab
-
-Every Omnibus project ships will a project-specific
-[Berksfile](http://berkshelf.com/) and [Vagrantfile](http://www.vagrantup.com/)
-that will allow you to build your projects on the following platforms:
-
-* CentOS 5 64-bit
-* CentOS 6 64-bit
-* Ubuntu 10.04 64-bit
-* Ubuntu 11.04 64-bit
-* Ubuntu 12.04 64-bit
-
-Please note this build-lab is only meant to get you up and running quickly;
-there's nothing inherent in Omnibus that restricts you to just building CentOS
-or Ubuntu packages. See the Vagrantfile to add new platforms to your build lab.
-
-The only requirements for standing up this virtualized build lab are:
-
-* VirtualBox - native packages exist for most platforms and can be downloaded
-from the [VirtualBox downloads page](https://www.virtualbox.org/wiki/Downloads).
-* Vagrant 1.2.1+ - native packages exist for most platforms and can be downloaded
-from the [Vagrant downloads page](http://downloads.vagrantup.com/).
-
-The [vagrant-berkshelf](https://github.com/RiotGames/vagrant-berkshelf) and
-[vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) Vagrant plugins
-are also required and can be installed easily with the following commands:
+Then login to the instance and build the project as described in the Usage
+section:
 
 ```shell
-$ vagrant plugin install vagrant-berkshelf
-$ vagrant plugin install vagrant-omnibus
+$ bundle exec kitchen login openresty-ubuntu-1204
+[vagrant@ubuntu...] $ cd omnibus-nginx-openresty
+[vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
+[vagrant@ubuntu...] $ ...
+[vagrant@ubuntu...] $ bundle exec omnibus build openresty -l internal
 ```
-
-Once the pre-requisites are installed you can build your package across all
-platforms with the following command:
-
-```shell
-$ vagrant up
-```
-
-If you would like to build a package for a single platform the command looks like this:
-
-```shell
-$ vagrant up PLATFORM
-```
-
-The complete list of valid platform names can be viewed with the
-`vagrant status` command.
-
-### Misc
-This is a fork of [omnibus-nginx](https://github.com/bakins/omnibus-nginx) to distinguish that it is openresty.

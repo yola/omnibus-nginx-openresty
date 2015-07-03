@@ -1,0 +1,30 @@
+driver:
+  name: vagrant
+  forward_agent: yes
+  provider: lxc
+  synced_folders:
+    - ['.', '/home/vagrant/omnibus-nginx-openresty']
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12
+
+platforms:
+  - name: ubuntu-12.04
+    driver:
+        box: "fgrehm/precise64-lxc"
+    run_list: apt::default
+  - name: ubuntu-14.04
+    driver:
+        box: "fgrehm/trusty64-lxc"
+    run_list: apt::default
+
+suites:
+  - name: openresty
+    run_list: omnibus::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir:         /opt/openresty
