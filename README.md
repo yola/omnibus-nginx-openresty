@@ -79,4 +79,9 @@ $ bundle exec kitchen login openresty-ubuntu-1204
 [vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
 [vagrant@ubuntu...] $ ...
 [vagrant@ubuntu...] $ bundle exec omnibus build openresty -l internal
+
+or:
+
+[vagrant@ubuntu...] $ cd omnibus-nginx-openresty
+[vagrant@ubuntu...] $ ./build.sh
 ```
