@@ -3,8 +3,7 @@ name "openresty"
 maintainer "Bearnard Hibbins <bearnard@gmail.com>"
 homepage "http://openresty.org"
 
-replaces        "nginx-openresty"
-install_path    "/opt/nginx-openresty"
+install_dir    "/opt/nginx-openresty"
 build_version   '1.7.10.1'
 build_iteration 1
 
@@ -12,15 +11,7 @@ build_iteration 1
 dependency "preparation"
 
 # openresty dependencies/components
-dependency "nginx-openresty"
-dependency "luarocks"
-dependency "lua-pb"
-dependency "lua-resty-riak"
-dependency "luafilesystem"
-dependency "luasec"
-dependency "luasocket"
-
-dependency "mmap_lowmem"
+dependency "openresty"
 
 # version manifest file
 dependency "version-manifest"
