@@ -55,6 +55,6 @@ sudo gem install deb-s3
 export AWS_SECRET_ACCESS_KEY=THE_KEY
 export AWS_ACCESS_KEY_ID=THE_KEY_ID
 
-deb-s3 upload --bucket yola-nginx-openresty-repo --sign=YOUR_GPG_KEY)ID --visibility=public --codename=(precise or trusty) pkg/*.deb
+deb-s3 upload --bucket yola-nginx-openresty-repo --sign=YOUR_GPG_KEY_ID --visibility=public --codename=(precise or trusty) pkg/*.deb
 
 ```
