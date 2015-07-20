@@ -38,11 +38,11 @@ $ bundle exec kitchen converge openresty-ubuntu-1204 or openresty-ubuntu-1404
 Then login to the instance and build the project:
 
 ```shell
-$ bundle exec kitchen login openresty-ubuntu-1204 or openresty-ubuntu-1404
-[vagrant@ubuntu...] $ cd omnibus-nginx-openresty
-[vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
-[vagrant@ubuntu...] $ ...
-[vagrant@ubuntu...] $ bundle exec omnibus build openresty
+bundle exec kitchen login openresty-ubuntu-1204 or openresty-ubuntu-1404
+...
+cd omnibus-nginx-openresty
+bundle install --without development # Don't install dev tools!
+bundle exec omnibus build openresty
 
 ```
 
