@@ -4,7 +4,7 @@ maintainer "Bearnard Hibbins <bearnard@gmail.com>"
 homepage "http://openresty.org"
 
 install_dir    "/opt/openresty"
-build_version   '1.7.10.1'
+build_version   '1.7.10.2'
 build_iteration 1
 
 # creates required build directories
