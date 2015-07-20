@@ -8,7 +8,7 @@ This project creates full-stack ubuntu platform-specific packages for
 We'll assume you have Ruby 1.9+ and Bundler installed. First ensure all
 required gems are installed and ready to use:
 
-Grab Vagrant from http://vagrantup.com and follow the ubuntu instructions.
+Grab Vagrant from http://vagrantup.com and follow the instructions.
 
 
 ```shell
