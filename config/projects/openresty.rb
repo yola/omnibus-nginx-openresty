@@ -1,6 +1,7 @@
 
 name "openresty"
-maintainer "Bearnard Hibbins <bearnard@gmail.com>"
+maintainer "Yola Operations <ops@yola.com>"
+
 homepage "http://openresty.org"
 
 install_dir    "/opt/openresty"
