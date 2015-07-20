@@ -78,10 +78,22 @@ $ bundle exec kitchen login openresty-ubuntu-1204
 [vagrant@ubuntu...] $ cd omnibus-nginx-openresty
 [vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
 [vagrant@ubuntu...] $ ...
-[vagrant@ubuntu...] $ bundle exec omnibus build openresty -l internal
+[vagrant@ubuntu...] $ bundle exec omnibus build openresty
 
 or:
 
 [vagrant@ubuntu...] $ cd omnibus-nginx-openresty
 [vagrant@ubuntu...] $ ./build.sh
+
+```
+
+Then logout of the instance to upload the resultant deb in ./pkg to an s3 repo. run:
+```shell
+Install deb-s3 https://github.com/krobertson/deb-s3
+
+$ export AWS_SECRET_ACCESS_KEY=THE_KEY
+$ export AWS_ACCESS_KEY_ID=THE_KEY_ID
+
+deb-s3 upload --bucket yola-nginx-openresty-repo --sign=YOUR_GPG_KEY)ID --visibility=public --codename=(precise or trusty) pkg/*.deb
+
 ```
