@@ -16,7 +16,7 @@ $ vagrant plugin install vagrant-omnibus vagrant-vbguest vagrant-berkshelf
 ```
 
 ```shell
-gem install bundler && gem update bundler
+$ gem install bundler && gem update bundler
 ```
 
 ```shell
@@ -35,8 +35,7 @@ Kitchen-based Build Environment
 $ bundle exec kitchen converge openresty-ubuntu-1204 or openresty-ubuntu-1404
 ```
 
-Then login to the instance and build the project as described in the Usage
-section:
+Then login to the instance and build the project:
 
 ```shell
 $ bundle exec kitchen login openresty-ubuntu-1204 or openresty-ubuntu-1404
@@ -44,11 +43,6 @@ $ bundle exec kitchen login openresty-ubuntu-1204 or openresty-ubuntu-1404
 [vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
 [vagrant@ubuntu...] $ ...
 [vagrant@ubuntu...] $ bundle exec omnibus build openresty
-
-or:
-
-[vagrant@ubuntu...] $ cd omnibus-nginx-openresty
-[vagrant@ubuntu...] $ ./build.sh
 
 ```
 
