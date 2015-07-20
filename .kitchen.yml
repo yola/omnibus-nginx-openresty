@@ -1,22 +1,20 @@
 driver:
   name: vagrant
   forward_agent: yes
-  provider: lxc
+  customize:
+    cpus: 4
+    memory: 4096      
   synced_folders:
     - ['.', '/home/vagrant/omnibus-nginx-openresty']
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 12
+  require_chef_omnibus: true # Always install the latest version of Chef      
 
 platforms:
   - name: ubuntu-12.04
-    driver:
-        box: "fgrehm/precise64-lxc"
     run_list: apt::default
   - name: ubuntu-14.04
-    driver:
-        box: "fgrehm/trusty64-lxc"
     run_list: apt::default
 
 suites:
