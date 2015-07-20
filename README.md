@@ -35,7 +35,7 @@ Decide which ubuntu release you want to build for.
 `export RELEASE=ubuntu-1204` or `export RELEASE=ubuntu-1404`
 
 ```shell
-$ bundle exec kitchen converge openresty-$RELEASE
+bundle exec kitchen converge openresty-$RELEASE
 ```
 
 Then login to the instance and build the project:
