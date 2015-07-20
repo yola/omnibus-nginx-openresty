@@ -16,7 +16,7 @@ $ vagrant plugin install vagrant-omnibus vagrant-vbguest vagrant-berkshelf
 ```
 
 ```shell
-$ gem install bundler && gem update bundler
+$ sudo gem install bundler && sudo gem update bundler
 ```
 
 ```shell
