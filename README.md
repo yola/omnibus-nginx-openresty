@@ -45,7 +45,7 @@ bundle exec kitchen login openresty-$RELEASE
 ...
 cd omnibus-nginx-openresty
 bundle install --without development # Don't install dev tools!
-bundle exec omnibus build openresty
+bundle exec omnibus build openresty --override append_timestamp:false
 
 ```
 
