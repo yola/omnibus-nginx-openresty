@@ -5,22 +5,14 @@ This project creates full-stack ubuntu platform-specific packages for
 
 ## Installation
 
-We'll assume you have Ruby 1.9+ and Bundler installed. First ensure all
-required gems are installed and ready to use:
+We'll assume you have Ruby 1.9+ and Bundler installed.
 
 Grab Vagrant from http://vagrantup.com and follow the instructions.
 
 
 ```shell
-$ vagrant plugin install vagrant-omnibus vagrant-vbguest vagrant-berkshelf
-```
-
-```shell
-$ sudo gem install bundler && sudo gem update bundler
-```
-
-```shell
-$ bundle install --binstubs
+vagrant plugin install vagrant-omnibus vagrant-vbguest vagrant-berkshelf
+bundle install --binstubs
 ```
 
 ## Usage
@@ -44,15 +36,11 @@ Then login to the instance and build the project:
 bundle exec kitchen login openresty-$RELEASE
 ...
 cd omnibus-nginx-openresty
-bundle install --without development # Don't install dev tools!
-bundle exec omnibus build openresty --override append_timestamp:false
-
+./build.sh
 ```
 
 Then logout of the instance to upload the resultant deb in ./pkg to an s3 repo. run:
 ```shell
-Install deb-s3 https://github.com/krobertson/deb-s3
-
 sudo gem install deb-s3
 
 export AWS_SECRET_ACCESS_KEY=THE_KEY
