@@ -49,6 +49,7 @@ build do
     '--with-sha1-asm',
     '--with-pcre-jit',
     '--with-luajit',
+    '--with-http_realip_module',
     '--without-http_ssi_module',
     '--without-mail_smtp_module',
     '--without-mail_imap_module',
