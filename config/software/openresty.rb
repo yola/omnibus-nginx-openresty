@@ -54,11 +54,6 @@ build do
     '--without-mail_imap_module',
     '--without-mail_pop3_module',
     '--with-ipv6',
-    # AIO support define in Openresty cookbook. Requires Kernel >= 2.6.22
-    # Ubuntu 10.04 reports: 2.6.32-38-server #83-Ubuntu SMP
-    # However, they require libatomic-ops-dev and libaio
-    #'--with-file-aio',
-    #'--with-libatomic'
   ]
 
   command configure.join(" "), env: env
