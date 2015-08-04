@@ -1,0 +1,28 @@
+driver:
+  name: vagrant
+  forward_agent: yes
+  customize:
+    cpus: 4
+    memory: 4096      
+  synced_folders:
+    - ['.', '/home/vagrant/omnibus-nginx-openresty']
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: true # Always install the latest version of Chef      
+
+platforms:
+  - name: ubuntu-12.04
+    run_list: apt::default
+  - name: ubuntu-14.04
+    run_list: apt::default
+
+suites:
+  - name: openresty
+    run_list: omnibus::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir:         /opt/openresty
