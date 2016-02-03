@@ -5,7 +5,7 @@ maintainer "Yola Operations <ops@yola.com>"
 homepage "http://openresty.org"
 
 install_dir    "/opt/openresty"
-build_version   '1.9.7.2'
+build_version   '1.9.7.3'
 build_iteration 1
 
 # creates required build directories

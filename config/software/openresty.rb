@@ -15,13 +15,13 @@
 #
 
 name "openresty"
-default_version "1.9.7.2"
+default_version "1.9.7.3"
 
 dependency "pcre"
 dependency "openssl"
 dependency "zlib"
 
-version("1.9.7.2") { source md5: "78a263de11ff43c95e847f208cce0899" }
+version("1.9.7.3") { source md5: "33579b96a8c22bedee97eadfc99d9564" }
 
 source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz"
 
