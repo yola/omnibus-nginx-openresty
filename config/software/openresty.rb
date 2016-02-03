@@ -23,9 +23,9 @@ dependency "zlib"
 
 version("1.9.7.3") { source md5: "33579b96a8c22bedee97eadfc99d9564" }
 
-source url: "http://openresty.org/download/ngx_openresty-#{version}.tar.gz"
+source url: "http://openresty.org/download/openresty-#{version}.tar.gz"
 
-relative_path "ngx_openresty-#{version}"
+relative_path "openresty-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
