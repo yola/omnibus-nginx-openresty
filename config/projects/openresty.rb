@@ -8,6 +8,9 @@ install_dir    "/opt/openresty"
 build_version   '1.7.10.2'
 build_iteration 1
 
+# ensures nginx-common isn't uninstalled when purging.
+runtime_dependency "nginx-common"
+
 # creates required build directories
 dependency "preparation"
 
